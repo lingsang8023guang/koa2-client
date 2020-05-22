@@ -16,6 +16,7 @@ export const addCookie = () => {
 
 // 登录成功之后，保存用户名
 export const addUserInfo = (name) => {
+    console.log('--go--')
     return {
         type: USER_INFO,
         params: name,

@@ -18,12 +18,9 @@ import {
     Tooltip,
 } from 'antd';
 import warning from 'warning';
-import { defineMessages } from 'react-intl';
 
-import ImageUpload from '../ImageUpload';
+import ImageUpload from './ImageUpload';
 import { parseRule } from './rules';
-import styles from './styles.less';
-import { getlocaleText } from '../../helpers/util';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -31,41 +28,6 @@ const CheckboxGroup = Checkbox.Group;
 const { Button: RadioButton, Group: RadioGroup } = Radio;
 const { MonthPicker, RangePicker } = DatePicker;
 
-const messages = defineMessages({
-    inputPlaceholder: {
-        id: 'Components.BaseForm.FormItems.input.placeholder',
-        defaultMessage: '请输入{label}',
-    },
-    selectPlaceholder: {
-        id: 'Components.BaseForm.FormItems.select.placeholder',
-        defaultMessage: '请选择{label}',
-    },
-    selectNotFoundContent: {
-        id: 'ULP.message.notFoundContent',
-        defaultMessage: '未找到匹配项',
-    },
-    switchOn: {
-        id: 'ULP.button.open',
-        defaultMessage: '开启',
-    },
-    switchOff: {
-        id: 'ULP.button.close',
-        defaultMessage: '关闭',
-    },
-    pickerPlaceholder: {
-        id: 'Components.BaseForm.FormItems.select.placeholder',
-        defaultMessage: '请选择{label}',
-    },
-    rangePickerPLHStartDate: {
-        id: 'ULP.text.startDate',
-        defaultMessage: '起始日期',
-    },
-    rangePickerPLHEndDate: {
-        id: 'ULP.text.endDate',
-        defaultMessage: '结束日期',
-    },
-
-});
 
 const emptyFn = () => { };
 
@@ -221,7 +183,7 @@ class BaseForm extends React.Component {
                         <Input
                             type={type}
                             rows={4}
-                            placeholder={getlocaleText(messages.inputPlaceholder, { label: item.label })}
+                            placeholder={`请输入${item.label}`}
                             addonBefore={item.prefix}
                             addonAfter={item.surfix}
                         />
@@ -252,8 +214,8 @@ class BaseForm extends React.Component {
                     })(
                         <Select
                             multiple={!!item.multiple}
-                            placeholder={getlocaleText(messages.selectPlaceholder, { label: item.label })}
-                            notFoundContent={getlocaleText(messages.selectNotFoundContent)}
+                            placeholder={`请输入${item.label}`}
+                            notFoundContent={'No Found'}
                             dropdownMatchSelectWidth={false}
                             filterOption={(value, option) => option.props.children.indexOf(value) > -1}
                         >
@@ -290,10 +252,6 @@ class BaseForm extends React.Component {
                         valuePropName: 'checked',
                     }, item)(
                         <Switch />
-                        // <Switch
-                        //     checkedChildren={item.onLabel || <FormattedMessage {...messages.switchOn} />}
-                        //     unCheckedChildren={item.offLabel || <FormattedMessage {...messages.switchOff} />}
-                        // />
                     );
                     break;
                 case 'timepicker': {
@@ -318,8 +276,7 @@ class BaseForm extends React.Component {
                         <Picker
                             showTime={item.showTime}
                             format={item.format}
-                            // placeholder={`请选择${item.label}`}
-                            placeholder={getlocaleText(messages.pickerPlaceholder, { label: item.label })}
+                            placeholder={`请选择${item.label}`}
                         />
                     );
                     break;
@@ -329,8 +286,7 @@ class BaseForm extends React.Component {
                         <RangePicker
                             showTime={item.showTime}
                             format={item.format}
-                            // placeholder={['起始日期', '结束日期']}
-                            placeholder={[getlocaleText(messages.rangePickerPLHStartDate), getlocaleText(messages.rangePickerPLHEndDate)]}
+                            placeholder={['起始日期', '结束日期']}
                         />
                     );
                     break;
@@ -389,7 +345,7 @@ class BaseForm extends React.Component {
         } = this.props;
         const isMultiCol = formKeys.length > 0 && typeof formKeys[0] === 'object';
         return (
-            <Form layout={layout} className={styles.baseForm}>
+            <Form layout={layout}>
                 {isMultiCol ? (
                     <Row gutter={gutter}>
                         {formKeys.map((cfg, idx) => (
@@ -404,11 +360,12 @@ class BaseForm extends React.Component {
     }
 }
 
-export default Form.create({
-    withRef: true,
-    // this function will be called when field is validating, thus depracate this option (chenyao)
-    // https://github.com/react-component/form/issues/52
-    // onFieldsChange(props, changedFields) {
-    //   props.onChange(changedFields);
-    // }
-})(BaseForm);
+// export default Form.create({
+//     withRef: true,
+//     // this function will be called when field is validating, thus depracate this option (chenyao)
+//     // https://github.com/react-component/form/issues/52
+//     // onFieldsChange(props, changedFields) {
+//     //   props.onChange(changedFields);
+//     // }
+// })(BaseForm);
+export default BaseForm

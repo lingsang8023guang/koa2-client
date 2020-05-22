@@ -16,7 +16,7 @@ class MainPage extends Component {
     }
     componentWillMount() {
         if (this.props.path === '/main') {
-            this.props.history.push('/main/page1')
+            this.props.history.push('/main/shopInfo')
         }
     }
     render() {
@@ -36,16 +36,16 @@ class MainPage extends Component {
                     <div className="logo" />
                         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                             <Menu.Item key="1">
-                               <NavLink to='/main/page1' className="nav-text">nav 1</NavLink>
+                               <NavLink to='/main/shopInfo' className="nav-text">店铺信息</NavLink>
                             </Menu.Item>
                             <Menu.Item key="2">
-                               <NavLink to='/main/page2' className="nav-text">nav 2</NavLink>
+                               <NavLink to='/main/foodInfo' className="nav-text">菜品管理</NavLink>
                             </Menu.Item>
                             <Menu.Item key="3">
-                              <NavLink to='/main/page3' className="nav-text">nav 3</NavLink>
+                              <NavLink to='/main/foodCategery' className="nav-text">菜品分类</NavLink>
                             </Menu.Item>
                             <Menu.Item key="4">
-                              <NavLink to='/main/page4' className="nav-text">nav 4</NavLink>
+                              <NavLink to='/main/foodGroup' className="nav-text">菜品分组</NavLink>
                             </Menu.Item>
                         </Menu>
                     </Sider>
@@ -53,10 +53,10 @@ class MainPage extends Component {
                         <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
                         <Content style={{ margin: '24px 16px 0' }}>
                             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>  
-                                <Route path='/main/page1' component = {DetailPage1}></Route>
-                                <Route path='/main/page2' component = {DetailPage2}></Route>
-                                <Route path='/main/page3' component = {DetailPage3}></Route>
-                                <Route path='/main/page4' component = {DetailPage4}></Route>
+                                <Route path='/main/shopInfo' component = {DetailPage1}></Route>
+                                <Route path='/main/foodInfo' component = {DetailPage2}></Route>
+                                <Route path='/main/foodCategery' component = {DetailPage3}></Route>
+                                <Route path='/main/foodGroup' component = {DetailPage4}></Route>
                             </div>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

@@ -1,19 +1,19 @@
-import { fromJS } from 'immutable'
+import { fromJS, set } from 'immutable'
 import Cookie from 'js-cookie'
 
 import { ADD_COOKIE, USER_INFO } from './createType'
 
 const defaultState = fromJS({
     xToken: Cookie.get('x-token') || '',
-    userName: 'ddd',
+    userName: '',
 })
 
 export function loginReducer(state = defaultState, actions) {
     switch (actions.type) {
         case ADD_COOKIE:
-          return Object.assign({}, state, { xToken: actions.params })
+          return state.set('xToken', fromJS(actions.params));
         case USER_INFO:
-          return Object.assign({}, state, { userName: actions.params }) 
+          return state.set('userName', fromJS(actions.params));
         default:
           return state
       }

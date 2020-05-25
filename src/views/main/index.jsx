@@ -17,8 +17,7 @@ class MainPage extends Component {
     componentWillMount() {
         if (this.props.path === '/main') {
             this.props.history.push('/main/shopInfo')
-        }
-    }
+        }    }
     render() {
         return(
             <div style={{ height: '100vh' }}>

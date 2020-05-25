@@ -3,7 +3,7 @@ import Cookie from 'js-cookie'
 import { message } from 'antd'
 import store from '../store'
 
-
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:4000': 'http://localhost:4000';
 axios.defaults.withCredentials = true; // 跨域访问需要发送cookie
 axios.defaults.timeout = 10000  // 超时时间
 

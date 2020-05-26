@@ -22,7 +22,7 @@ class Login extends Component {
     onFinish = values => {
         request({
             method: 'POST',
-            url: '/login',
+            url: '/Connect2/ConnetionTest',  // /login
             data: {
                 name: values.username,
                 password: values.password,

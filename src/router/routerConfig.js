@@ -11,6 +11,10 @@ const routes = [
                 component: 'views/login',
             },
             {
+                path: '/register',
+                component: 'views/register',
+            },
+            {
                 path: '/main',
                 component: 'views/main',
                 key: 'main',

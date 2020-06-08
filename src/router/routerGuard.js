@@ -19,7 +19,7 @@ class RouterGuard extends Component {
     componentWillMount() {
         let { history: { replace }, authorization, location, component } = this.props;
         let cookie = Cookie.get('x-token');
-        if (location.pathname !== '/login' && cookie !== 'sang') {
+        if (location.pathname !== '/login' && cookie !== 'sang' && location.pathname !== '/register') {
             replace('/login')
         }
 

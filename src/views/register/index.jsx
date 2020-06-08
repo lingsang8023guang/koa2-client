@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import request from '../../axios'
-import { Form, Input, Button, Checkbox, message } from 'antd';
-import { getIn, get } from 'immutable'
-import { addUserInfo, addCookie } from './store/createType'
+import { Form, Input, Button, Checkbox } from 'antd';
 
 const layout = {
     labelCol: { span: 4 },
@@ -12,7 +9,7 @@ const layout = {
   const tailLayout = {
     wrapperCol: { offset: 4, span: 18 },
   };
-class Login extends Component {
+class RegisterPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -22,19 +19,19 @@ class Login extends Component {
     onFinish = values => {
         request({
             method: 'POST',
-            url: '/login',  // /Connect2/ConnetionTest
+            url: '/register',  // /Connect2/ConnetionTest
             data: {
                 name: values.username,
                 password: values.password,
+                confirmPassword: values.confirmPassword,
+                phone: values.phone,
             }
         }).then((res) => {
             console.log(res, '--res');
             if (res.code === '000') {
-                this.props.onLogin(values.username);
-                this.props.setCookie();
-                this.props.history.push('/main')
-            } else{
-                message.warning(res.message)
+                // this.props.onLogin(values.username);
+                // this.props.setCookie();
+                this.props.history.push('/login')
             }
         })
       };
@@ -68,19 +65,26 @@ class Login extends Component {
                     >
                     <Input.Password />
                     </Form.Item>
-            
-                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
-                    <a className="login-form-forgot" href="" style={{ float: 'right' }}>
-                       Forgot password
-                    </a>
+
+                    <Form.Item
+                    label="confirmPassword"
+                    name="confirmPassword"
+                    rules={[{ required: true, message: 'Please confirm input your password!' }]}
+                    >
+                    <Input.Password />
                     </Form.Item>
             
+                   <Form.Item
+                    label="Phone"
+                    name="phone"
+                    rules={[{ required: true, message: 'Please input your phone!' }]}
+                    >
+                    <Input />
+                    </Form.Item>
                     <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-                      Log in
+                      Go Regester
                     </Button>
-                    Or <a href="/register">register now!</a>
                     </Form.Item>
                 </Form>
                 </div>
@@ -89,21 +93,4 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state.login.get('userName'), '--userName')
-    console.log(state, '--state');
-    return {
-        userName: state.login.get('userName')
-    }
-}
-function mapDispatchToProps(dispatch) {
-    return {
-      onLogin: (name) => {
-          return dispatch(addUserInfo(name))
-      },
-      setCookie: () => {
-          dispatch(addCookie())
-        }
-    }
-  }
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default RegisterPage

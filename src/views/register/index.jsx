@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import request from '../../axios'
 import { Form, Input, Button, Checkbox } from 'antd';
+import '../../App.css';
 
 const layout = {
     labelCol: { span: 4 },
@@ -41,8 +42,9 @@ class RegisterPage extends Component {
       };
     render() {
         return(
-            <div style={{ background: '#000', height: '100vh' }}>
-                <div style={{ width: '550px', background: '#94e694', padding: '20px', position: 'fixed', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)' }}>
+            // <div style={{ background: 'aliceblue', height: '100vh' }}>
+            <div className="box">
+                <div style={{ width: '550px', background: '#fff', padding: '20px', position: 'fixed', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)' }}>
                     <Form
                     {...layout}
                     name="basic"
@@ -51,40 +53,41 @@ class RegisterPage extends Component {
                     onFinishFailed={this.onFinishFailed}
                 >
                     <Form.Item
-                    label="Username"
+                    label="用户名"
                     name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: '请输入用户名!' }]}
                     >
                     <Input />
                     </Form.Item>
             
                     <Form.Item
-                    label="Password"
+                    label="密码"
                     name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    rules={[{ required: true, message: '请输入密码!' }]}
                     >
                     <Input.Password />
                     </Form.Item>
 
                     <Form.Item
-                    label="confirmPassword"
+                    label="确认密码"
                     name="confirmPassword"
-                    rules={[{ required: true, message: 'Please confirm input your password!' }]}
+                    rules={[{ required: true, message: '请确认密码!' }]}
                     >
                     <Input.Password />
                     </Form.Item>
             
                    <Form.Item
-                    label="Phone"
+                    label="手机号"
                     name="phone"
-                    rules={[{ required: true, message: 'Please input your phone!' }]}
+                    rules={[{ required: true, message: '请输入您的手机号!' }]}
                     >
                     <Input />
                     </Form.Item>
                     <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-                      Go Regester
+                      去注册
                     </Button>
+                    <a href="/login">立即登录</a>
                     </Form.Item>
                 </Form>
                 </div>

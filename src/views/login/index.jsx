@@ -4,6 +4,9 @@ import request from '../../axios'
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { getIn, get } from 'immutable'
 import { addUserInfo, addCookie } from './store/createType'
+// import '../../login.less';
+import Styles from '../../login.less';
+console.log(Styles, '---000')
 
 const layout = {
     labelCol: { span: 4 },
@@ -26,7 +29,7 @@ class Login extends Component {
             data: {
                 name: values.username,
                 password: values.password,
-            }
+            } 
         }).then((res) => {
             console.log(res, '--res');
             if (res.code === '000') {
@@ -44,8 +47,9 @@ class Login extends Component {
       };
     render() {
         return(
-            <div style={{ background: '#000', height: '100vh' }}>
-                <div style={{ width: '550px', background: '#94e694', padding: '20px', position: 'fixed', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)' }}>
+            // <div style={{ background: 'aliceblue', height: '100vh' }}>
+            <div className={Styles.box1}>
+                <div style={{ width: '550px', background: '#fff', padding: '20px', position: 'fixed', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)' }}>
                     <Form
                     {...layout}
                     name="basic"
@@ -54,33 +58,33 @@ class Login extends Component {
                     onFinishFailed={this.onFinishFailed}
                 >
                     <Form.Item
-                    label="Username"
+                    label="用户名"
                     name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: '请输入用户名!' }]}
                     >
                     <Input />
                     </Form.Item>
             
                     <Form.Item
-                    label="Password"
+                    label="密码"
                     name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    rules={[{ required: true, message: '请输入密码!' }]}
                     >
                     <Input.Password />
                     </Form.Item>
             
                     <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>记住密码</Checkbox>
                     <a className="login-form-forgot" href="" style={{ float: 'right' }}>
-                       Forgot password
+                       忘记密码
                     </a>
                     </Form.Item>
             
                     <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-                      Log in
+                      登录
                     </Button>
-                    Or <a href="/register">register now!</a>
+                    <a href="/register">立即注册</a>
                     </Form.Item>
                 </Form>
                 </div>
